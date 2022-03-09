@@ -7,7 +7,7 @@ Knex.Js é uma biblioteca do ecossistema do NodeJs. Além disso, trata-se de uma
 Para adentrar a esse tema primeiro precisamos destacar as abordagens das construções de queries dentro da programação.
 
 - 1️⃣ Código SQL dentro do corpo das Linguagens de Programação:
-  Essa abordagem **não é recomenda** pois em determinado momento o código poderá ficar ilegível para outros desenvolvedores. São conhecidas como *queries cruas*(Raw).
+  Essa abordagem **não é recomendada** pois em determinado momento o código ficará ilegível para outros desenvolvedores. Essa abordagem é conhecida como *queries cruas*(Raw).
   Código de exemplo:
 
   ```sql
@@ -78,3 +78,64 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   ```
 
   
+
+# 📝 Resumo de  Comandos  SQL
+
+##### ➕ INSERT
+
+Começamos primeiramente com a definição do nosso banco de dados, para acompanhar o processo a query está disponível aqui []() . Em seguida criamos nosso primeiro dado para ser adicionado na tabela. Abaixo está o código usado através do javascript.
+
+```js
+//Definição dos dados para INSERT
+var dados = {
+  nome: "God Of War",
+  preco: 60.50,
+  marca: "Sony"
+}
+
+```
+
+Logo em seguida usamos a sintaxe para a construção do método *insert* para adicionar o elemento na tabela. Vale frisar que o código trabalha com o conceito de *"promisse"*, que será explicado em outro projeto.
+Código que foi implementado:
+
+```js
+//Promisse
+database.insert(dados).into("games").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});
+```
+
+Também podemos fornecer um array de elementos para serem inseridos na tabela como n exemplo abaixo:
+
+```js
+var dados = [
+  {
+  nome: "Minecraft",
+  preco: 160.90,
+  marca: "Mojang"
+  },
+  {
+    nome: "GTA",
+    preco: 120.30,
+    marca: "RockStar"
+  },
+  {
+    nome: "Call Of Duty",
+    preco: 234.90,
+    marca: "Activison"
+  },
+]
+
+```
+
+Como resultado iremos obter esse exemplo de tabela: 
+
+| id   | nome         | preco  | marca      |
+| :--- | ------------ | ------ | ---------- |
+| 1    | Minecraft    | 160.90 | Mojang     |
+| 2    | GTA          | 120.30 | Rockstar   |
+| 3    | Call of Duty | 234.90 | Activision |
+
+Em desenvolvimento....
