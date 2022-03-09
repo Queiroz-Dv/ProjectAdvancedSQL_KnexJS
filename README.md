@@ -1,6 +1,6 @@
 # 🔮 Project   Advanced   SQL - KNEX.JS
 
-Knex.Js é uma biblioteca do ecossistema do NodeJs. Além disso, trata-se de uma biblioteca para manipulação de banco de dados SQL. 
+Knex.Js é uma biblioteca do ecossistema do NodeJs. Além disso, trata-se de uma biblioteca para manipulação de banco de dados SQL.
 
 ## 🧱  O  que  é  Query  Builder ?
 
@@ -16,8 +16,6 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   ...\\
   ```
 
-  
-
 - 2️⃣ Via ORM:
   Essa abordagem trabalha com uma *"Model"* , que é **responsável por mapear e abstrair** para métodos do paradigma de Orientação a Objetos. A desvantagem de utilizar a abordagem ORM é que **ela inviabiliza a utilização de queries mais avançadas,** causando uma rigidez no código.
   Código de exemplo:
@@ -25,8 +23,6 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   ```js
   Models-> Articles.create({title: "post"});
   ```
-
-  
 
 - 3️⃣ Query Builders:
   Essa abordagem abstrai as duas citadas anteriormente. Em resumo o query builder constrói uma query sem precisarmos digitar qualquer linha de código SQL. O objetivo dessa abordagem é **gerar queries de forma simplificada e objetiva**, o que garante uma maior flexibilidade para o desenvolvedor.
@@ -36,13 +32,11 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   banco.select().table("post")where(id: 7);
   ```
 
-  
-
 # 🔧 Configurando o projeto
 
-### **Tecnologias usadas:** 
+### **Tecnologias usadas:**
 
-- Iniciando projeto: 
+- Iniciando projeto:
 
   ```powershell
   npm init
@@ -60,11 +54,9 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   npm install mysql2 --save
   ```
 
-  
+#### 💾 Configuração do banco de dados
 
-  #### 💾 Configuração do banco de dados: 
-
-  ```
+  ```js
   var knex = require('knex')({
     client: 'mysql2',
     connection: {
@@ -77,13 +69,11 @@ Para adentrar a esse tema primeiro precisamos destacar as abordagens das constru
   module.exports = knex;
   ```
 
-  
-
-# 📝 Resumo de  Comandos  SQL
+# 📝 Resumo de  Comandos e Boas Práticas  SQL
 
 ##### ➕ INSERT
 
-Começamos primeiramente com a definição do nosso banco de dados, para acompanhar o processo a query está disponível aqui []() . Em seguida criamos nosso primeiro dado para ser adicionado na tabela. Abaixo está o código usado através do javascript.
+Começamos primeiramente com a definição do nosso banco de dados. Em seguida criamos nosso primeiro dado para ser adicionado na tabela. Abaixo está o código usado através do javascript.
 
 ```js
 //Definição dos dados para INSERT
@@ -130,7 +120,7 @@ var dados = [
 
 ```
 
-Como resultado iremos obter esse exemplo de tabela: 
+Como resultado iremos obter esse exemplo de tabela:
 
 | id   | nome         | preco  | marca      |
 | :--- | ------------ | ------ | ---------- |
@@ -138,11 +128,9 @@ Como resultado iremos obter esse exemplo de tabela:
 | 2    | GTA          | 120.30 | Rockstar   |
 | 3    | Call of Duty | 234.90 | Activision |
 
-
-
 ##### ✅ SELECT
 
-Este comando é usado para selecionar,categorizar e manipular dados de diferentes formas. Abaixo temos um exemplo de seleção da tabela games. 
+Este comando é usado para selecionar,categorizar e manipular dados de diferentes formas. Abaixo temos um exemplo de seleção da tabela games.
 
 ```js
 database.select().table("games").then(data => {
@@ -152,12 +140,14 @@ database.select().table("games").then(data => {
 })
 ```
 
-Para seleções de atributos podemos passar um array junto com os atributos que queremos. Abaixo está o mesmo código, porém com os atributos "id" e "preco" como retorno. 
+Para seleções de atributos podemos passar um array junto com os atributos que queremos. Abaixo está o mesmo código, porém com os atributos "id" e "preco" como retorno.
 
 ```js
 database.select(["id", "preco"]).table("games");
 ```
-##### 🔃 Nested Queries
+
+##### 🔃 NESTED QUERIES
+
 Este recurso é usado quando queremos fazer mais de uma consulta em uma única query. São chamadas de "Queries Aninhadas" pois realiza uma consulta após a outra. Abaixo temos um código de exemplo onde se insere um dado e logo em seguida faz a listagem dos atributos.
 
 ```js
@@ -182,3 +172,27 @@ database.insert({
   console.log(error);
 })
 ```
+
+##### 🔍 WHERE
+
+Este comando é usado para cláusulas condicionais. Abaixo temos um exemplo do código que foi implementado:
+
+```js
+var query = database.
+where({ nome: "The Sims" })
+.table("games");
+console.log(query.toQuery());
+```
+
+Porém, para estruturas mais complexas utilizamos o recurso *"whereRaw"* , que, de forma resumida, tem se a necessidade de escrever o que se quer consultar.
+Código de exemplo:
+
+```js
+var query = database.select(["id", "preco"]).
+  where({ nome: "Call of Duty" }).
+  whereRaw("preco > 50").
+  table("games");
+console.log(query.toQuery());
+```
+
+> Obs: É recomendável usar apenas um where para consultas condicionais.

@@ -32,7 +32,7 @@ database.insert(dados).into("games").then(data => {
 })*/
 
 // Multíplas consultas
-database.insert({
+/*database.insert({
   nome: "The Sims",
   preco: 123.60,
   marca: "EA Games"
@@ -45,4 +45,10 @@ database.insert({
   console.log(data);
 }).catch(error => {
   console.log(error);
-})
+})*/
+
+//WHERE
+/*var query = database.select(["id", "preco"]).
+  whereRaw("preco > 50").
+  table("games");
+console.log(query.toQuery());*/
