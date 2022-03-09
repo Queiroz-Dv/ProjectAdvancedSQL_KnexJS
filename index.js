@@ -25,8 +25,24 @@ database.insert(dados).into("games").then(data => {
 });*/
 
 //Select
-database.select(["id", "preco"]).table("games").then(data => {
+/*database.select(["id", "preco"]).table("games").then(data => {
   console.log(data);
 }).catch(erro => {
+  console.log(error);
+})*/
+
+// Multíplas consultas
+database.insert({
+  nome: "The Sims",
+  preco: 123.60,
+  marca: "EA Games"
+}).into("games").then(data => {
+  database.select(["id", "preco"]).table("games").then(data => {
+    console.log(data);
+  }).catch(erro => {
+    console.log(error);
+  })
+  console.log(data);
+}).catch(error => {
   console.log(error);
 })

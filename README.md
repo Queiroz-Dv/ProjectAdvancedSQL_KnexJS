@@ -140,7 +140,7 @@ Como resultado iremos obter esse exemplo de tabela:
 
 
 
-##### ✅SELECT
+##### ✅ SELECT
 
 Este comando é usado para selecionar,categorizar e manipular dados de diferentes formas. Abaixo temos um exemplo de seleção da tabela games. 
 
@@ -157,4 +157,28 @@ Para seleções de atributos podemos passar um array junto com os atributos que 
 ```js
 database.select(["id", "preco"]).table("games");
 ```
+##### 🔃 Nested Queries
+Este recurso é usado quando queremos fazer mais de uma consulta em uma única query. São chamadas de "Queries Aninhadas" pois realiza uma consulta após a outra. Abaixo temos um código de exemplo onde se insere um dado e logo em seguida faz a listagem dos atributos.
 
+```js
+// Primeira consultas
+database.insert({
+  nome: "The Sims",
+  preco: 123.60,
+  marca: "EA Games"
+}).into("games").then(data => {
+
+  //Segunda Consulta
+  database.select(["id", "preco"]).
+  table("games").
+  then(data => {
+  console.log(data);
+  console.log(error);
+  });
+  console.log(data);
+  //Fim da segunda Consulta
+
+}).catch(error => {
+  console.log(error);
+})
+```
