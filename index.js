@@ -1,7 +1,7 @@
 var database = require("./database");
 
 //Definição dos dados para INSERT
-var dados = [
+/*var dados = [
   {
   nome: "Minecraft",
   preco: 160.90,
@@ -18,10 +18,15 @@ var dados = [
     marca: "Activison"
   },
 ]
-
-//Promisse
 database.insert(dados).into("games").then(data => {
   console.log(data);
 }).catch(error => {
   console.log(error);
-});
+});*/
+
+//Select
+database.select(["id", "preco"]).table("games").then(data => {
+  console.log(data);
+}).catch(erro => {
+  console.log(error);
+})

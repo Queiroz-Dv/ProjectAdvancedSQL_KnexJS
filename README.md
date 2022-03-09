@@ -138,4 +138,23 @@ Como resultado iremos obter esse exemplo de tabela:
 | 2    | GTA          | 120.30 | Rockstar   |
 | 3    | Call of Duty | 234.90 | Activision |
 
-Em desenvolvimento....
+
+
+##### ✅SELECT
+
+Este comando é usado para selecionar,categorizar e manipular dados de diferentes formas. Abaixo temos um exemplo de seleção da tabela games. 
+
+```js
+database.select().table("games").then(data => {
+  console.log(data);
+}).catch(erro => {
+  console.log(error);
+})
+```
+
+Para seleções de atributos podemos passar um array junto com os atributos que queremos. Abaixo está o mesmo código, porém com os atributos "id" e "preco" como retorno. 
+
+```js
+database.select(["id", "preco"]).table("games");
+```
+
