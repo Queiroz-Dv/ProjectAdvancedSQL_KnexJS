@@ -52,3 +52,10 @@ database.insert(dados).into("games").then(data => {
   whereRaw("preco > 50").
   table("games");
 console.log(query.toQuery());*/
+
+//DELETE
+database.where({ id: 3 }).delete().table("games").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});

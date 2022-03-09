@@ -196,3 +196,15 @@ console.log(query.toQuery());
 ```
 
 > Obs: É recomendável usar apenas um where para consultas condicionais.
+
+##### 💥 DELETE
+
+O comando delete funciona da mesma forma que o select, basta apenas repassar o parâmetro do que será deletado.
+
+```js
+database.where({ id: 3 }).delete().table("games").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});
+```
