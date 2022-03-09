@@ -54,7 +54,14 @@ database.insert(dados).into("games").then(data => {
 console.log(query.toQuery());*/
 
 //DELETE
-database.where({ id: 3 }).delete().table("games").then(data => {
+/*database.where({ id: 3 }).delete().table("games").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});*/
+
+//UPDATE
+database.where({ id: 1 }).update({ preco: 40 }).table("games").then(data => {
   console.log(data);
 }).catch(error => {
   console.log(error);

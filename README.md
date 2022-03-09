@@ -199,7 +199,7 @@ console.log(query.toQuery());
 
 ##### 💥 DELETE
 
-O comando delete funciona da mesma forma que o select, basta apenas repassar o parâmetro do que será deletado.
+O comando delete funciona da mesma forma que o select, basta apenas repassar o parâmetro do que será deletado e a sua respectiva tabela.
 
 ```js
 database.where({ id: 3 }).delete().table("games").then(data => {
@@ -208,3 +208,15 @@ database.where({ id: 3 }).delete().table("games").then(data => {
   console.log(error);
 });
 ```
+
+##### 🔄 UPDATE
+
+ Assim como os outros comandos o update segue o mesmo padrão, além disso é de extrema importância respeitar o tipo dos campos a serem atualizados.
+
+ ```js
+ database.where({ id: 1 }).update({ preco: 40 }).table("games").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});
+ ```
