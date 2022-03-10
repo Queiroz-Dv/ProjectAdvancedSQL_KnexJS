@@ -220,3 +220,72 @@ database.where({ id: 3 }).delete().table("games").then(data => {
   console.log(error);
 });
  ```
+
+##### 🔡 ORDER BY
+
+ Este comando é usado para ordenação dos dados seja em ordem alfabética, crescente e descrescente.
+
+ ```js
+ database.
+ select().
+ table("games").
+ orderBy("preco", "desc"); //desc
+
+database.
+select().
+table("games").
+orderBy("preco", "asc"); //asc
+ ```
+
+# 💞 Relacionamentos
+
+Os relacionamentos entre tabelas são formas de criar dependências entre elas, bem como associações.
+Ao todo existe três tipos de relações que serão descritas abaixo:
+
+| Relacionamentos | Dependências                                                 |
+| --------------- | ------------------------------------------------------------ |
+| 1 P 1           | Um estúdio tem um game  - Um game tem um estúdio             |
+| 1 P M           | Um estúdio pode ter vários games                             |
+| M P M           | Um estúdio pode ter vários games - Um game pode ter vários estúdios |
+
+#### 🗝 Chaves
+
+Existe dois tipos de chaves que norteiam os bancos SQL: as chaves primárias (*primary keys*) e chaves estrangeiras (*foreign keys*).
+
+*Chave Primária* tem o objetivo de formar uma identificação do registro e precisa ser única.
+
+*Chave Estrangeira* tem o papel de fazer uma relação entre tabelas. Além disso uma chave estrangeira sempre será a cópia de uma chave primária.
+
+##### 🔛 Joins (Resumo)
+
+Os joins servem para ecoomizar  recursos do servido fazendo queries. Um join é uma maneira de unirmos duas tabelas numa só consulta.
+
+*Inserções Associadas(Associated Inserts)* servem para inserir registros que tem um relacionamento com outro registro. Abaixo está  o código que foi implementado como exemplo:
+
+```js
+database.insert({
+  nome: "Blizzard",
+  game_id: 3
+}).table("estudios").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});
+```
+
+##### ↔ Inner Join
+
+O inner join é um recurso que irá unir duas tabelas ignorando os registros nulos.
+
+```js
+database.
+select().
+table("games").
+innerJoin("estudios", "estudios.game_id", "games.id");
+```
+
+# 🎉🎉 Agradecimento
+
+Com isso terminamos mais um resumo para fins de estudos.
+Deixe uma star ou compartilhe o conteúdo com quem precisa!
+Isso é apenas uma introdução para outros resumos mais complexos que estarão em cada repositório.

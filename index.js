@@ -61,8 +61,28 @@ console.log(query.toQuery());*/
 });*/
 
 //UPDATE
-database.where({ id: 1 }).update({ preco: 40 }).table("games").then(data => {
+/*database.where({ id: 1 }).update({ preco: 40 }).table("games").then(data => {
   console.log(data);
 }).catch(error => {
   console.log(error);
-});
+});*/
+
+//Order By
+//database.select().table("games").orderBy("preco", "desc"); //desc
+//database.select().table("games").orderBy("preco", "asc"); //asc
+
+//Inserts Associados
+/*database.insert({
+  nome: "Blizzard",
+  game_id: 3
+}).table("estudios").then(data => {
+  console.log(data);
+}).catch(error => {
+  console.log(error);
+});*/
+
+//Joins
+/*database.
+select([""]).
+table("games").
+innerJoin("estudios", "estudios.game_id", "games.id");*/
