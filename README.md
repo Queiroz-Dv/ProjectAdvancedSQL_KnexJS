@@ -97,7 +97,7 @@ database.insert(dados).into("games").then(data => {
 });
 ```
 
-Também podemos fornecer um array de elementos para serem inseridos na tabela como n exemplo abaixo:
+Também podemos fornecer um array de elementos para serem inseridos na tabela como no exemplo abaixo:
 
 ```js
 var dados = [
